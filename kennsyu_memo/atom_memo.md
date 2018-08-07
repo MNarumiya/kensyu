@@ -7,6 +7,7 @@
 
 ## ハイライト
 - [highlight-line](https://atom.io/packages/highlight-line) ...編集している行をハイライトしてれる
+- [highlight-selected](https://atom.io/packages/highlight-selected) ...編集してる変数と同じ変数にハイライトする
 
 ## ツールバーを使う
 次のPackageをインストール
