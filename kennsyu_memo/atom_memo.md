@@ -3,6 +3,11 @@
 - atom-material-uiとatom-material-syntax
 - seti-uiとseti-syntax
 
+結局自分はseti-uiとatom-material-syntaxを使ってる.
+
+## ハイライト
+- [highlight-line](https://atom.io/packages/highlight-line) ...編集している行をハイライトしてれる
+
 ## ツールバーを使う
 次のPackageをインストール
 - [Atom Tool Bar](https://atom.io/packages/tool-bar) ...ツールバーを追加するPackage
