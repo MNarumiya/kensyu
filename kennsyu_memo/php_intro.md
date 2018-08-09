@@ -32,6 +32,7 @@
 ##### +Ultra
 - staticな配列,関数も作成可能
 - オーバライドができない(オーバーライドしようとしてもエラーは出ないが実行されてない)
+- - 別の変数で初期化できない(これはconstも同様)(そのため式代入などはできない)
 
 #### 動的メンバと静的メンバの関係性
 - 静的なメソッドおよび静的なプロパティは、動的なメソッド・プロパティにアクセス可能.  
@@ -45,9 +46,12 @@
 ### 定数について
 - 定数は通常の変数と区別するために、基本的にアルファベットの大文字で記述するのが慣例(例:CONST_NAME)
 
+
 ### 定数の宣言方法
 - defineで宣言
 - constで宣言
+
+> define関数とconst構文との違いは、define関数がプログラム内のどこからでも呼び出せるグローバルな定数を宣言できるのに対し、const構文は宣言したクラス内でしか使えないローカルな定数となっています。
 
 
 ### defineで定数を定義する方法
@@ -59,6 +63,7 @@ bool define ( $定数名 , $値 [, bool $case_insensitive = false ] )
 - PHP7から配列を指定することが可能
 - defineで定義した定数は大文字小文字を明確に区別
   - 大文字小文字を区別しないようにするにはdefineの第三引数にtrueを指定する
+- クラス内での宣言は不可能
 
 ### constで定数を定義する方法
 宣言方法:
@@ -73,6 +78,8 @@ class クラス名{
 - [本質] **constはクラス内で定数を定義する** ...クラス外で定義するとエラー
 - 変数の先頭に$の記号は付けない
 - クラス内からconst定数を参照するときには「self::定数名」の形式を指定する
+- 別の変数で初期化できない(これはstaticも同様)(そのため式代入などはできない)
+- constとstaticは組み合わせて使えない
 
 
 
@@ -115,19 +122,17 @@ const 定数名2 = クラス名::定数名1;
   ```
 
 
+#### defineとconstの違い
+defineにしかできないことがある
 
-#### クラス内定数
-##### クラス内の定義方法
-```
-class クラス名{
-  const 定数名 = 値;
-}
-```
+- 動的な宣言
+- 大文字小文字を区別しない宣言
 
 #### 参考
 - [【PHP入門】defineで定数を定義する方法](https://www.sejuku.net/blog/23526)
 - [【PHP入門】constで定数を定義する方法](https://www.sejuku.net/blog/27679)
 - [【初心者必見！】PHPのクラス(class)のさまざまな使い方を総まとめ！](https://www.sejuku.net/blog/25620)
+- [【PHP入門講座】 変数と定数](https://qiita.com/mpyw/items/95e205056e25b7a59dfa)
 
 ### クラスのプロパティを取得する
 クラスのデフォルトのプロパティのを取得するにはget_class_vars関数を使用.
@@ -198,3 +203,64 @@ bool class_exists ( string $クラス名 [, bool $autoload = true ] )
 ### 例外クラスについて
 #### 参考
 - [【PHP入門】Exceptionクラス徹底解説!例外をthrowしてtry~catchする](https://www.sejuku.net/blog/24907)
+
+
+## JSONの取り扱い
+json decodeは変数に対してのみ
+
+### constでdefine
+#### define
+```
+define('CLIENT_SECRET_JSON','{"web": {
+  ...
+  }
+}');
+define('CLIENT_SECRET_JSON_DECODES', json_decode(CLIENT_SECRET_JSON, true));
+```
+
+は可能
+
+
+
+```
+class ClientSecret{
+  const _CLIENT_SECRET_JSON = '
+		{
+			"web": {
+		   ...
+		  }
+		}';
+
+  // 処理
+}
+```
+
+```
+public static function hogehoge(){
+  return json_decode(self::_CLIENT_SECRET_JSON, true);
+}
+```
+
+はいける
+
+```
+const _CLIENT_SECRET_JSON_DECODES = json_decode(CLIENT_SECRET_JSON, true);
+```
+
+はエラー
+
+```
+const _CLIENT_SECRET_JSON_DECODES = json_decode(self::_CLIENT_SECRET_JSON, true);
+```
+
+もエラー
+
+```
+public static function clientsecret_To_Json(){
+  $CLIENT_SECRET_JSON_DECODE = json_decode(self::_CLIENT_SECRET_JSON, true);
+  return json_decode(self::_CLIENT_SECRET_JSON, true);
+  // return json_decode(CLIENT_SECRET_JSON, true);
+}
+```
+
+はいける
