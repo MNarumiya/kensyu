@@ -7,11 +7,13 @@
 
 ## ハイライト
 - [highlight-line](https://atom.io/packages/highlight-line) ...編集している行をハイライトしてれる
+- [highlight-selected](https://atom.io/packages/highlight-selected) ...編集してる変数と同じ変数にハイライトする
 
 ## ツールバーを使う
 次のPackageをインストール
 - [Atom Tool Bar](https://atom.io/packages/tool-bar) ...ツールバーを追加するPackage
 - [Flex Tool Bar](https://atom.io/packages/flex-tool-bar) ...json形式でツールバーを設定するPackage
+- [minimap-highlight-selected package](https://atom.io/packages/minimap-highlight-selected) ...ハイライトのminimap版
 
 これらをインストールして,ツールバーが表示されるので,ルーツバーの設定アイコンをクリックするとtoolbar.csonが開くので,toolbar.csonを例えば以下のように設定  
 
