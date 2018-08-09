@@ -95,3 +95,16 @@
 ### 参考
 - [Atom をMarkdownエディタとして整備](https://qiita.com/kouichi-c-nakamura/items/5b04fb1a127aac8ba3b0)
 - [最強のMarkdown編集環境としてのAtom](http://takezoe.hatenablog.com/entry/2017/09/25/083522)
+
+
+## HTML/CSSを使う
+- [Emmet](https://atom.io/packages/emmet) ...HTMLやCSSのコーディングをサポートする.省略記法でいける.mdの感覚で使える?
+
+### 参考
+- [Emmetの使い方| Atom講座 | [Smart]](https://rfs.jp/sb/atom-github/atom03_emmet_howto.html)
+
+## Atomの設定をGitで管理
+最初から設定ファイルをGitで管理するようにしておき、Githubに専用のリポジトリを追加しておくと、スムーズな移行が可能になり、バックアップ対策にも
+
+### 参考
+- [Atomの設定をGitで管理する| Atom講座 | [Smart]](https://rfs.jp/sb/atom-github/atom10_github.html)
