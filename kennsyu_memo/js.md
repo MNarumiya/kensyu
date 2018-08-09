@@ -44,3 +44,24 @@ var fugafuga = function() {
     var x =10;
   })();
   ```
+
+### jQuery
+始まりの書き方の基本は`$(function(){`から始まる.  
+これは,「ページが読み込まれたら,ここを読み込んでね」という元々の長い記法の省略記法
+
+- セレクタ :処理対象となるDOM要素を指定する記法
+- メソッド : 処理
+  - メソッドを繋げて書くことができる...メソッドチェーン
+
+例:
+```
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$("p").css('color,'red);
+</script>
+```
+
+pがセレクタ,.css()がメソッド
+
+### 動的に割り当てられた要素に対してイベントを割り当てる
+onメソッドを用いる
