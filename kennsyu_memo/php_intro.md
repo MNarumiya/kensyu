@@ -264,3 +264,173 @@ public static function clientsecret_To_Json(){
 ```
 
 はいける
+
+## 三項演算子
+- 三項演算子とは、1つの演算子処理で3つの式を使用するための比較処理
+- 基本構文
+  ```
+  条件式 ? 真の式 : 偽の式
+  ```
+- 条件式の結果がTRUEの場合は真の式を返し、結果がFALSEの場合は偽の式を返す
+
+###  用途
+- 三項演算子の結果は変数に代入することが可能
+  - 例:
+    ```
+    <?php
+    $num1 = 100;
+    $num2 = 200;
+
+    $ans = $value1 < $value2 ? 'num1はnum2より大きい' : 'num1はnum2より小さい';
+
+    echo $ans;
+    ?>
+    ```
+
+- 三項演算子をメソッドの返り値としても利用可能
+  - 例:
+    ```
+    <?php
+
+    function foo($val){
+      return  $value1 < $value2 ? 'num1はnum2より大きい' : 'num1はnum2より小さい';
+    }
+
+    $num1 = 100;
+    $num2 = 200;
+
+    //関数の呼出し
+    $ans = foo($num1, $num2);
+    echo $ans;
+    ?>
+    ```
+
+### +Ultra:エルビス演算子とNull合体演算子
+- PHP5.3から使えるようになったエルビス演算子とPHP7から使えるようになったNull合体演算子は、三項演算子を簡略化したもの
+
+#### エルビス演算子
+- 基本構文
+  ```
+  条件式(真の式) ?: 偽の式;
+  ```
+- 条件式がTUREと同等だった場合その値または「1」が返され、FALSEだった場合に偽の式が返される
+- エルビス演算子は値がNULLの場合や、未定義(undefined)の時によく使われる
+
+例:
+```
+<?php
+$a = 0;
+$num = $a ?: '0';
+
+echo $num; // output: 0
+?>
+```
+
+#### NULL合体演算子とは
+- Null合体演算子は、条件式の結果がNULLかそうでないかを返す
+- エルビス演算子の場合は変数宣言がされていないとエラーが表示されるが、Null合体演算子は、指定した変数が存在しない(変数宣言されていない)場合でも、エラーは発生せず値を返してくれる
+- 基本構文:
+  ```
+  条件式または$変数 ?? 真の式;  // ?が2つ
+  ```
+  - 条件式または$変数の値がNULLのとき、真の式が返り、FALSEのときに条件式または$変数の値が返えされる
+
+#### 三項演算子で検査関数(isset)を使用する
+```
+<?php
+$value = NULL;
+
+//isset関数で値を確認する
+$ans = isset($value) ? '値が設定されています。' : '値が設定されていません。';
+
+echo $ans;
+?>
+```
+
+#### 雑談?
+- 三項演算子よりif文での比較処理のほうが早い
+
+#### 参考
+- [【PHP入門】三項演算子とは？使いこなしてコードをスッキリする](https://www.sejuku.net/blog/23070)
+
+## `htmlspecialchars`について
+- HTMLエンティティ化する関数
+- 書式:
+  ```
+  htmlspecialchars (エンティティ対象文字列, （フラグ, エンコード（これらは省略可））)
+  ```
+
+
+### HTMLエンティティ化とは?
+以下の2つを比較
+
+```
+// HTMLエンティティ化した場合
+echo htmlspecialchars('<a href="#">HTMLエンティティ化する。</a>');
+
+// HTMLエンティティ化しない場合
+echo '<a href="#">HTMLエンティティ化しない。</a>';
+```
+
+上記2つを比べると、以下のような違いがある
+- HTMLエンティティ化した場合  
+    htmlのリンクタグがそのまま文字列として表示され、クリックしても動作しない。
+- HTMLエンティティ化しない場合  
+    リンクのアンカーテキストだけが表示され、実際にクリックできる。
+
+HTMLエンティティ化することで、上記サンプルのようにタグを無効化し、単なる文字列として出力してくれるので、悪意のあるスクリプトを仕込まれても大丈夫
+
+### 参考
+- [PHPのhtmlspecialcharsでのHTMLエンティティ化と、一文字に簡略化方法](https://www.flatflag.nir87.com/htmlspecialchars-555)
+
+## PDOのprepareメソッドについて
+PDOのprepareメソッド
+- プリペアドステートメントとは、SQL文を最初に用意しておいて、その後はクエリ内のパラメータの値だけを変更してクエリを実行できる機能のこと
+- この機能を利用することでクエリの解析やコンパイル等にかかる時間は最初の一回だけで良くなり、より高速に実行することが可能
+- SQLインジェクション対策に必要なパラメータのエスケープ処理も自動で行ってくれるため、安全かつ効率の良い開発が可能
+
+### プリペアドステートメントを利用してクエリを実行する流れ
+1. PDOオブジェクトの作成
+2. prepareメソッドでSQL文をセット
+3. bindValue or bindParamでパラメータに値をセット
+4. executeメソッドでクエリを実行
+5. fetch or fetchAllメソッドで結果を配列で取得
+
+### 例
+```
+//PDOオブジェクトの生成
+$pdo = new PDO("mysql:dbname=test;host=localhost",USERNAME,PASSWORD);
+
+//prepareメソッドでSQLをセット
+$stmt = $pdo->prepare("select name from test where id = :id and num = :num");
+
+//bindValueメソッドでパラメータをセット
+bindValue("id",2);
+bindValue("num",10);
+
+//executeでクエリを実行
+$stmt->execute();
+
+//結果を表示
+$result = $stmt->fetch();
+echo "name = ".$result['name'];
+```
+
+bindValueを使わずにexecuteメソッドの引数に配列を使うことでセットする方法もある
+
+```
+//PDOオブジェクトの生成
+	$pdo = new PDO("mysql:dbname=test;host=localhost",USERNAME,PASSWORD);
+
+	//prepareメソッドでSQLをセット
+	$stmt = $pdo->prepare("select name from test where id = :id and num = :num");
+
+  //パラメータマークと値のペタの連想配列を作成
+	$array = array("id"=>2,"num"=>10);
+
+	//executeメソッドに配列を渡す。
+	$stmt->execute($array);
+	//結果を表示
+	$result = $stmt->fetch();
+	echo "name = ".$result['name'].PHP_EOL;
+```

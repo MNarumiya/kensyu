@@ -79,9 +79,11 @@
 そうするとツールバーにアイコンが色々出てくる
 
 
-
 ### 参考
 - [ツールバーを追加する: Atom Tool Bar(tool-bar) / Flex Tool Bar(flex-tool-bar)](https://rfs.jp/sb/atom-github/atom_package_tool_bar.html)
+
+## インデント範囲を縦線で表示する
+- [indent-guide-improved](https://atom.io/packages/indent-guide-improved)
 
 ## マークダウンを使う
 定番のPackage
@@ -108,3 +110,31 @@
 
 ### 参考
 - [Atomの設定をGitで管理する| Atom講座 | [Smart]](https://rfs.jp/sb/atom-github/atom10_github.html)
+
+## Atomエディタが重いときに動作を軽くする
+アクティビティモニタをみるとAtom HeiperがCPUを占有しまくってる  
+以下を参照  
+- [Atomエディタが重いときに動作を軽くする5つの解決方法](https://iwb.jp/atom-editor-setting-faster/)
+
+## PHPを使う
+- [linter-php](https://atom.io/packages/linter-php)
+  - linter-phpを使うためにはphpのpathをatomのconfig.csonに足してあげなきゃならない
+  - phpのpathは`$ which php`で手に入る
+  - んで,linter-phpのHPを参考に以下のようにconfig.csonに加えれば良い
+    ```
+    "linter-php":
+    'executablePath': /usr/bin/php
+    ```
+  - ちなみに,config.csonに保存しようとするとなぜかerrorが出るが無視しても,linterは動いた
+
+- [php-debug](https://atom.io/packages/php-debug)  
+  Xdebugと組み合わせてAtom上でのステップ実行を可能するパッケージ
+  - Xdebugもインストールが必要 → [https://xdebug.org/](https://xdebug.org/)
+  - インストール手順: https://xdebug.org/wizard.php
+  - 詳しくはここ: [AtomでXdebugを使ってステップ実行するには](http://murayama.hatenablog.com/entry/2017/04/19/085029)
+
+### 参考
+- [PHPプログラマーのためのAtomパッケージ5選](https://itcaret.com/archives/595/)
+
+## Atomの全て(笑)
+- [GitHub 製エディタ Atom入門](https://qiita.com/k2works/items/1d25888fb3a05058e48f)
