@@ -1,15 +1,20 @@
 # Atomメモ
-## シンタックスハイライトとUI
+## テーマ
+### シンタックスハイライトとUI
 - atom-material-uiとatom-material-syntax
 - seti-uiとseti-syntax
 
 結局自分はseti-uiとatom-material-syntaxを使ってる.
 
-## ハイライト
+## パッケージ
+### 参考
+- [【Atom】開発が10倍捗る！おすすめ設定・パッケージ・ショートカットをご紹介](https://tech-camp.in/note/technology/1079/)
+
+### ハイライト
 - [highlight-line](https://atom.io/packages/highlight-line) ...編集している行をハイライトしてれる
 - [highlight-selected](https://atom.io/packages/highlight-selected) ...編集してる変数と同じ変数にハイライトする
 
-## ツールバーを使う
+### ツールバーを使う
 次のPackageをインストール
 - [Atom Tool Bar](https://atom.io/packages/tool-bar) ...ツールバーを追加するPackage
 - [Flex Tool Bar](https://atom.io/packages/flex-tool-bar) ...json形式でツールバーを設定するPackage
@@ -79,11 +84,14 @@
 そうするとツールバーにアイコンが色々出てくる
 
 
-### 参考
+#### 参考
 - [ツールバーを追加する: Atom Tool Bar(tool-bar) / Flex Tool Bar(flex-tool-bar)](https://rfs.jp/sb/atom-github/atom_package_tool_bar.html)
 
-## インデント範囲を縦線で表示する
+### インデント範囲を縦線で表示する
 - [indent-guide-improved](https://atom.io/packages/indent-guide-improved)
+
+### その他
+- [file-icons](https://atom.io/packages/file-icons)
 
 ## マークダウンを使う
 定番のPackage
@@ -136,5 +144,5 @@
 ### 参考
 - [PHPプログラマーのためのAtomパッケージ5選](https://itcaret.com/archives/595/)
 
-## Atomの全て(笑)
+## Atomの参考にすべき記事
 - [GitHub 製エディタ Atom入門](https://qiita.com/k2works/items/1d25888fb3a05058e48f)
