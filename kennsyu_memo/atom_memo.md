@@ -109,6 +109,7 @@
 
 ## HTML/CSSを使う
 - [Emmet](https://atom.io/packages/emmet) ...HTMLやCSSのコーディングをサポートする.省略記法でいける.mdの感覚で使える?
+- [autoclose-html](https://atom.io/packages/autoclose-html)
 
 ### 参考
 - [Emmetの使い方| Atom講座 | [Smart]](https://rfs.jp/sb/atom-github/atom03_emmet_howto.html)
