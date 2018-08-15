@@ -263,11 +263,11 @@ jQueryにも似たメソッドが存在する...eachメソッド
       //「バナナ」の文字位置を取得する
       var target = str.indexOf('バナナ');
 
-      //「バナナ」移行の文字を取得する
+      //「バナナ」以降の文字を取得する
       var result = str.substring(target);
 
       console.log('バナナの位置：' + target);  // output: バナナの位置：3
-      console.log(result); // output:
+      console.log(result); // output:バナナメロン
       ```
 
   - **indexOfメソッドで文字列を検索**
@@ -290,6 +290,10 @@ jQueryにも似たメソッドが存在する...eachメソッド
 - 「cookie」には有効期限を設定することができる
   - 期限が過ぎると「cookie」のデータが自動的に削除される
   - JavaScriptには「cookie」を削除するメソッドが無いので、実際にはこの「有効期限」を活用することで意図的に削除することが可能
+  - 例:
+    ```
+    setcookie('hoge', '', time() - 1800);
+    ```
 - 有効期限は【max-age=秒数】のように、秒数を指定することで設定が可能
   - 例:
     ```
@@ -509,7 +513,7 @@ $.post( サーバーへのパス, 任意のデータ )
 always ( function() {  } )
 ```
 
-もっと細かくいうと(っていうかこのタイプは古いらしい)
+次のタイプは古い
 ```
 $.post( url [, data] [, success] [, dataType] )
 ```
@@ -554,7 +558,7 @@ $('form').submit(function( event ) {
 - 複数のinputタグがある場合は「&」で連結
 
 ##### サーバーに送信する形にする
-- jQueryの標準で提供されている「serialize()」メソッドを使うと送信用のデータ形式に変換
+- jQueryの標準で提供されている「serialize()」メソッドを使うと送信用のデータ形式に変換(jsonになる)
 
 ```
 <form>
@@ -607,3 +611,11 @@ $('form').submit(function( event ) {
 #### 参考
 - [【jQuery入門】post()でデータを送信・取得する方法！](https://www.sejuku.net/blog/42985)
 - [$.post() | jQuery 1.9 日本語リファレンス | js STUDIO](http://js.studio-kingdom.com/jquery/ajax/post)
+
+## locationオブジェクト
+### 参考
+- [【JavaScript入門】locationのURL操作まとめ(href/searchなど)](https://www.sejuku.net/blog/26999)
+
+
+## セレクタについて
+- [jQueryのセレクタメモ](https://qiita.com/Thought_Nibbler/items/5d4fc40a4d4325128b24)

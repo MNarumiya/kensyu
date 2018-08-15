@@ -302,3 +302,12 @@ idで個人を持ってても機能として代わりはないが,それだとid
 #### という訳で,まずは,ログイン機能でも実装して行こう
 
  なんか408エラー出てる...
+
+ phpでjson出力したら, jsがajax通信で勝手に取ってくれテル感じ?
+
+### 参考
+- [PHPからMySQLのデータをJSON形式で出力してjQueryとAjax通信を使って取得して表示するサンプル](http://webcake.no003.info/webdesign/jquery-ajax-php-json-sample.html)
+- [jQuery：Ajaxを使用してPOST送信でデータ取得](http://raining.bear-life.com/jquery/ajax%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6post%E9%80%81%E4%BF%A1%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%96%E5%BE%97)
+
+
+なぜか$("form").sumbmit...が効かない!!!

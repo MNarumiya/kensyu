@@ -434,3 +434,79 @@ bindValueを使わずにexecuteメソッドの引数に配列を使うことで�
 	$result = $stmt->fetch();
 	echo "name = ".$result['name'].PHP_EOL;
 ```
+
+### 参考
+- [PHPでPDOを使ってMySQLに接続、INSERT、UPDATE、DELETE、COUNT、SUM](https://qiita.com/tabo_purify/items/2575a58c54e43cd59630)
+- [PDOでMySQLに接続してINSERTやUPDATEやSELECTやSUM](https://labo-iwasaki.com/code/pdo-index.html)
+
+## ハッシュ化
+何があっても`password_hash`でやるのが良さげ?
+
+### 暗号化とハッシュの違い
+- 暗号化は元の文字列に戻すことが可能で、そして元の文字列に戻すことが前提の情報に使用するもの
+- ハッシュ化は一度変換したら元に戻すことのできない、一方通行の不可逆変換
+  - 特定の入力値からは特定の出力値が出てくるので、その対応表さえ作ってしまえば10文字程度のパスワードであれば物理的に解読ができてしまう
+  - そのようなクラックに対抗するためにSALTやStretchingといった手段が作り出されていて、それらを適切に実装するかぎりではパスワードはとても安全
+  - password_hash関数は、同じパスワードを渡したとしても毎回異なる結果が出てくる
+  - 実はpassword_hashはただのcryptのラッパーで、実際には関数内部でそのあたりの処理を行っているだけ
+  - 認証は`password_verify`
+
+### 参考
+- [2018年のパスワードハッシュ](https://qiita.com/rana_kualu/items/3ef57485be1103362f56)
+
+## ランダムな文字生成
+### 暗号的に強い乱数のバイト文字列
+```
+string random_bytes ( int $length )
+```
+
+例
+```
+// ランダムな2バイトの文字列を返す。各バイトは0x00から0xffのどれか。
+var_dump(bin2hex(random_bytes(2)));
+```
+
+- `string bin2hex ( string $str )` ...str を16進表現に変換したASCII文字列を返す
+
+
+## 一意の文字列
+`string uniqid ([ string $prefix = "" [, bool $more_entropy = false ]] )`
+
+マイクロ秒単位の現在時刻にもとづいた、接頭辞つきの一意な ID を取(接頭辞を$pre
+  で指定)  
+
+### $prefixに乱数を指定する
+```
+<?php
+	echo uniqid(random_int(0, 9999999999));
+?>
+```
+
+ - `random_int( 最小値, 最大値)` は必ず最大値最小値を指定
+
+### $prefixにランダムなバイト文字列を指定する
+```
+<?php
+	echo uniqid(bin2hex(random_bytes(8)));
+?>
+```
+
+### 参考
+- [PHPでユニークなIDを生成する：uniqid()](https://kakakakakku.hatenablog.com/entry/20081016/1224154493s)
+
+
+## header関数
+- header関数は、HTTPヘッダー情報を送信するときに使用
+  - HTTPヘッダーとは、HTTPによる「リクエスト（要求）→レスポンス」の流れで、どのような情報をリクエストして、どのようなコンテンツを受け取るかを定義するためのもの
+- 以下のように定義
+  ```
+  header ( $ヘッダ文字列 [, bool $replace = true [, int $http_response_code ]] )
+  ```
+
+### やれること
+- ファイルをダウンロードする
+- 指定したページにリダイレクトする
+- JSONを出力する
+
+### 参考
+- [【PHP入門】header関数の使い方まとめ](https://www.sejuku.net/blog/28054)
